@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import AthleteDropdown from './athleteDropDown.jsx';
 
 function lineupSelector(props) {
