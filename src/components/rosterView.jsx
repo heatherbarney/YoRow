@@ -1,3 +1,5 @@
+import React from 'react';
+
 function RosterView(props) {
 
   const roster = props.roster;
