@@ -1,0 +1,162 @@
+[
+	{
+		"name": "Trouble",
+		"type": "Single",
+		"abbrev": "1x",
+		"coxed": false,
+		"sweep": false,
+		"seats": [
+			{
+				"name": "Single Sculler",
+				"number": "1",
+				"side": "Scull"
+			}
+		]
+	},
+	{
+		"name": "Larkspur",
+		"type": "Pair",
+		"abbrev": "2-",
+		"coxed": false,
+		"sweep": true,
+		"seats": [
+			{
+				"name": "Bow-Seat",
+				"number": "1",
+				"side": "Starboard"
+			},
+			{
+				"name": "Stroke-Seat",
+				"number": "2",
+				"side": "Port"
+			}
+		]
+	},
+	{
+		"name": "Alouette",
+		"type": "Double",
+		"abbrev": "2x",
+		"coxed": false,
+		"sweep": false,
+		"seats": [
+			{
+				"name": "Bow-Seat",
+				"number": "1",
+				"side": "Scull"
+			},
+			{
+				"name": "Stroke-Seat",
+				"number": "2",
+				"side": "Scull"
+			}
+		]
+	},
+	{
+		"name": "Affirmed",
+		"type": "Quad",
+		"abbrev": "4x",
+		"coxed": false,
+		"sweep": false,
+		"seats": [
+			{
+				"name": "Bow-Seat",
+				"number": "1",
+				"side": "Scull"
+			},
+			{
+				"name": "Two-Seat",
+				"number": "2",
+				"side": "Scull"
+			},
+			{
+				"name": "Three-Seat",
+				"number": "3",
+				"side": "Scull"
+			},
+			{
+				"name": "Stroke-Seat",
+				"number": "4",
+				"side": "Scull"
+			}
+		]
+	},
+	{
+		"name": "Spirit of 2008",
+		"type": "Coxed Four",
+		"abbrev": "4+",
+		"coxed": true,
+		"sweep": true,
+		"seats": [
+			{
+				"name": "Bow-Seat",
+				"number": "1",
+				"side": "Starboard"
+			},
+			{
+				"name": "Two-Seat",
+				"number": "2",
+				"side": "Port"
+			},
+			{
+				"name": "Three-Seat",
+				"number": "3",
+				"side": "Starboard"
+			},
+			{
+				"name": "Stroke-Seat",
+				"number": "4",
+				"side": "Port"
+			}
+		]
+	},
+	{
+		"name": "Lou O'Brien Berl",
+		"type": "Eight",
+		"abbrev": "8+",
+		"coxed": true,
+		"sweep": true,
+		"seats": [
+			{
+				"name": "Bow-Seat",
+				"number": "1",
+				"side": "Starboard"
+			},
+			{
+				"name": "Two-Seat",
+				"number": "2",
+				"side": "Port"
+			},
+			{
+				"name": "Three-Seat",
+				"number": "3",
+				"side": "Starboard"
+			},
+			{
+				"name": "Four-Seat",
+				"number": "4",
+				"side": "Port"
+			},
+			{
+				"name": "Five-Seat",
+				"number": "5",
+				"side": "Starboard"
+			},
+			{
+				"name": "Six-Seat",
+				"number": "6",
+				"side": "Port"
+			},
+			{
+				"name": "Seven-Seat",
+				"number": "7",
+				"side": "Starboard"
+			},
+			{
+				"name": "Stroke-Seat",
+				"number": "8",
+				"side": "Port"
+			}
+		]
+	}
+]
+
