@@ -15,13 +15,18 @@ router.get('/boats',
   (req, res) => res.status(200).json(res.locals.fleet)
 );
 
-router.post('/roster', debuggingCheck,
+router.post('/roster',
   rosterController.addAthlete,
   (req, res) => res.status(200).json(res.locals.newAthlete)
 );
 
+router.delete('/roster/:name', debuggingCheck,
+  rosterController.deleteAthlete,
+  (req, res) => res.status(200).json(res.locals.deletedAthlete)
+);
+
 function debuggingCheck (req, res, next) {
-  console.log('Request made it API!');
+  console.log('Request made it to the API!');
   next();
 }
 

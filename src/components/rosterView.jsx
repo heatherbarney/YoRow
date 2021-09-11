@@ -1,4 +1,5 @@
 import React from 'react';
+import DeleteDropdown from './deleteDropdown.jsx';
 
 function RosterView(props) {
 
@@ -23,7 +24,7 @@ function RosterView(props) {
       <div>
           <h2>Roster</h2>
           <button>Add Athlete</button>
-          <button>Delete Athlete</button>
+          <DeleteDropdown roster = {roster} getRoster = {props.getRoster}/>
           <div className='rosterContainer'>
             {rows}
           </div>

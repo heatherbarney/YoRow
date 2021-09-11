@@ -21,4 +21,14 @@ rosterController.addAthlete = (req, res, next) => {
   })
 }
 
+rosterController.deleteAthlete = (req, res, next) => {
+  const name = req.params.name;
+  console.log(name)
+  Athlete.findOneAndRemove({name: name}, (err, athlete) => {
+    if (err) return next(err);
+    res.locals.deletedAthlete = athlete;
+    return next();
+  })
+}
+
   module.exports = rosterController;
