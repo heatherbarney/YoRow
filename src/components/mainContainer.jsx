@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import LineupSelector from './lineupSelector.jsx';
 import BoatContainer from './boatContainer.jsx';
 import RosterView from './rosterView.jsx';
+import AthleteForm from './athleteForm.jsx';
 //import LineupsDisplay from './lineupsDisplay.jsx';
 
 
@@ -171,6 +172,7 @@ class MainContainer extends Component {
       <div className="mainContainer">
         <div className="selectionContainer">
           <RosterView roster={this.state.roster} />
+          <AthleteForm roster={this.state.roster}/>
           <BoatContainer boatList={this.state.boatList} boat={this.state.boat} chooseBoat={this.chooseBoat} clearLineup={this.clearLineup}/>
           <LineupSelector lineup={this.state.lineup} roster={this.state.roster} boat={this.state.boat} assignAthlete={this.assignAthlete} clearLineup={this.clearLineup} clearAthlete={this.clearAthlete}/>
         </div>

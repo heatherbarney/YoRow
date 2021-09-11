@@ -15,4 +15,14 @@ router.get('/boats',
   (req, res) => res.status(200).json(res.locals.fleet)
 );
 
+router.post('/roster', debuggingCheck,
+  rosterController.addAthlete,
+  (req, res) => res.status(200).json(res.locals.newAthlete)
+);
+
+function debuggingCheck (req, res, next) {
+  console.log('Request made it API!');
+  next();
+}
+
 module.exports = router;

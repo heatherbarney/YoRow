@@ -12,7 +12,7 @@ function lineupSelector(props) {
   for (let i = 0; i < seats.length; i++) {
     rows.push(
       <div>
-        <label><span className='seatSpan'>{seats[i].name}</span><span>{': ' + lineup[i].name}</span></label>
+        <label className='selectorLabel'><span className='seatSpan'>{seats[i].name}</span><span>{': ' + lineup[i].name}</span></label>
         <AthleteDropdown clearAthlete = {props.clearAthlete} assignAthlete={props.assignAthlete} roster={props.roster} side={seats[i].side} seat={seats[i].number}/>
       </div>
     )
@@ -22,7 +22,7 @@ function lineupSelector(props) {
   if (coxed) {
     rows.push(
       <div>
-        <label><span className='seatSpan'>{'Coxswain: '}</span><span>{lineup[8].name}</span></label>
+        <label className='selectorLabel'><span className='seatSpan'>{'Coxswain: '}</span><span>{lineup[8].name}</span></label>
         <AthleteDropdown assignAthlete={props.assignAthlete} clearAthlete={props.clearAthlete} roster={props.roster} side='Cox' seat='9'/>
       </div>
     )

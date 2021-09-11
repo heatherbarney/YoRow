@@ -69,11 +69,10 @@ html {
     border: black 1px solid;
     height: 550px;
   }
-  
-  label {
+
+  .selectorLabel {
     display: inline-block;
     width: 150px;
-    font-size: 1.6rem;
     margin-top: 1em;
     margin-bottom: 1em;
   }
@@ -105,4 +104,8 @@ html {
   
   .clearButton {
     font-style: italic;
+  }
+
+  label {
+    font-size: 1.6rem;
   }
