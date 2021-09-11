@@ -64,6 +64,7 @@ class AthleteForm extends Component {
         .then(resp => resp.json())
         .then((data) => {
           console.log(data);
+          this.props.getRoster();
         })
         .catch(err => console.log('athleteForm fetch /api/roster: ERROR: ', err));
       }
