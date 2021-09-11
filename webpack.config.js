@@ -8,12 +8,19 @@ module.exports = {
   devServer: {
     static: './build',
     proxy: {
-      '/api': 'http://localhost:3000/'
+      '/api': 'http://localhost:3000/',
+      changeOrigin: true,
+      secure: false,
+      headers: {
+        Connection: 'keep-alive'
+      },
+      open: true
     },
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './index.html' 
+      template: './index.html',
+      inject: false,
     }),
   ],
   output: {

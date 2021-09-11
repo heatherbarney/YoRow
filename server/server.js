@@ -1,12 +1,19 @@
 const path = require('path');
 const express = require('express');
 const app = express();
+const mongoose = require('mongoose');
+require("dotenv").config({ path: "./config.env" });
+const PORT = process.env.PORT || 3000;
 
 const apiRouter = require('./routes/api');
-require("dotenv").config({ path: "./config.env" });
-const dbo = require("./db/conn");
 
-const port = process.env.PORT || 3000;
+mongoose.connect('mongodb+srv://hbarney:Freddy9325@cluster0.fgbwl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+mongoose.connection.once('open', () => {
+  console.log('Connected to Database');
+});
 
 /**
  * handle parsing request body
@@ -38,13 +45,6 @@ app.use((err, req, res, next) => {
   return res.status(errorObj.status).json(errorObj.message);
 });
 
-app.listen(port, () => {
-  // perform a database connection when server starts
-  dbo.connectToServer(function (err) {
-    if (err) console.error(err);
- 
-  });
-  console.log(`Server is running on port: ${port}`);
-});
+app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`));
 
 module.exports = app;

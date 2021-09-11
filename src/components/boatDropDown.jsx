@@ -4,12 +4,12 @@ class BoatDropdown extends Component {
 
   constructor(props) {
     super(props);
-    
+
     this.state = {
       showMenu: false,
     }
-    
-    this.showMenu = this.showMenu.bind(this);
+
+    this.showMenu = this.showMenu.bind(this);    
   }
   
   showMenu(event) {
@@ -33,10 +33,9 @@ class BoatDropdown extends Component {
     const buttons = [];
     this.props.boatList.forEach(boat => {
         buttons.push(
-          <button name={boat.name} id={boat.type} onClick={(event) => {this.props.chooseBoat(event); this.showMenu(event); this.props.clearLineup()}}>{boat.name + ' (' + boat.abbrev + ')'}</button>
+          <button name={boat.name} id={boat.class} onClick={(event) => {this.props.chooseBoat(event); this.showMenu(event); this.props.clearLineup()}}>{boat.name + ' (' + boat.abbrev + ')'}</button>
         )
       });
-
 
     return (
       <div className="dropdown">

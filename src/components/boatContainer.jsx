@@ -11,11 +11,11 @@ class BoatContainer extends Component {
 
   render() {
 
-    const boatType = this.props.boat.type;
+    const boatClass = this.props.boat.class;
     const boatName = this.props.boat.name;
     let boat;
 
-    switch(boatType) {
+    switch(boatClass) {
       case 'Pair':
         boat = pair;
         break;
@@ -55,7 +55,7 @@ class BoatContainer extends Component {
               null
             )
           }
-          {boatType
+          {boatClass
             ? (
               <img src={boat} alt="Boat"/>
             )

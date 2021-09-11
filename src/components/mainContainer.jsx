@@ -51,13 +51,13 @@ class MainContainer extends Component {
       ],
       boat: {
         name: null,
-        type: null,
+        class: null,
         abbrev: null,
         coxed: null,
         sweep: null,
         seats: [],
       },
-      boatList: []
+      boatList: [],
     }
 
     this.assignAthlete = this.assignAthlete.bind(this);
@@ -72,7 +72,7 @@ class MainContainer extends Component {
  }
 
  getRoster() {
-  fetch('./roster.json'
+  fetch('/api/roster'
   ,{
     headers : { 
       'Content-Type': 'application/json',
@@ -85,7 +85,7 @@ class MainContainer extends Component {
 }
 
   getBoats() {
-    fetch('./boats.json'
+    fetch('/api/boats'
     ,{
       headers : { 
         'Content-Type': 'application/json',
@@ -94,7 +94,7 @@ class MainContainer extends Component {
     }
     )
       .then(data => data.json())
-      .then(json => this.setState({ boatList: json }))
+      .then(json => this.setState({ boatList: json }));
   }
 
   assignAthlete(e) {
@@ -163,7 +163,7 @@ class MainContainer extends Component {
         this.setState({boat: boat})
       }
     })
-}
+  }
 
   render() {
 
