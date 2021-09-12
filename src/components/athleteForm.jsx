@@ -72,7 +72,7 @@ class AthleteForm extends Component {
 
     render() {
       return (
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={(event) => {this.handleSubmit(event); this.props.closeModal(event);}}>
           <label className='formLabel'>
             Athlete Name:
             <input

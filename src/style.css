@@ -66,8 +66,6 @@ html {
   .selectionContainer {
     display: flex;
     justify-content: space-evenly;
-    border: black 1px solid;
-    height: 550px;
   }
 
   .selectorLabel {
@@ -108,4 +106,26 @@ html {
 
   label {
     font-size: 1.6rem;
+  }
+
+  .modalContent {
+    background-color: white;
+    width: 500px;
+  }
+
+  .modal {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+  }
+
+  .modalBody {
+    padding: 10px;
   }
