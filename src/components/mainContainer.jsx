@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import LineupSelector from './lineupSelector.jsx';
-import BoatContainer from './boatContainer.jsx';
+import FleetContainer from './fleetContainer.jsx';
 import RosterView from './rosterView.jsx';
-import AthleteForm from './athleteForm.jsx';
 //import LineupsDisplay from './lineupsDisplay.jsx';
 
 
@@ -51,7 +50,7 @@ class MainContainer extends Component {
         }, 
       ],
       boat: {
-        name: null,
+        name: '',
         class: null,
         abbrev: null,
         coxed: null,
@@ -157,14 +156,48 @@ class MainContainer extends Component {
       )
     }))
   }
+
+  clearBoat(e) {
+    const currBoat = this.state.boat.name;
+
+    if (currBoat !== null) {
+      this.setState(prevState => ({
+        roster: prevState.roster.map(
+          el => el.name === currName ? { ...el, available: true }: el
+        )
+      }))
+    }
+
+    this.setState(prevState => ({
+      lineup: prevState.lineup.map(
+        el => el.number === seat ? { ...el, name: '' }: el
+      )
+    }))
+  }
   
   chooseBoat(e) {
     const boatName = e.target.name;
+    const currBoat = this.state.boat.name;
+    
+    if (currBoat !== '') {
+      this.setState(prevState => ({
+        boatList: prevState.boatList.map(
+          el => el.name === currBoat ? { ...el, available: true }: el
+        )
+      }))
+    }
+
     this.state.boatList.forEach(boat => {
       if (boatName === boat.name) {
         this.setState({boat: boat})
       }
     })
+
+    this.setState(prevState => ({
+      boatList: prevState.boatList.map(
+        el => el.name === boatName ? { ...el, available: false }: el
+      )
+    }))
   }
 
   render() {
@@ -173,7 +206,7 @@ class MainContainer extends Component {
       <div className="mainContainer">
         <div className="selectionContainer">
           <RosterView roster={this.state.roster} getRoster = {this.getRoster}/>
-          <BoatContainer boatList={this.state.boatList}/>
+          <FleetContainer boatList={this.state.boatList}/>
           <LineupSelector boatList={this.state.boatList} lineup={this.state.lineup} roster={this.state.roster} boat={this.state.boat} chooseBoat={this.chooseBoat} clearLineup={this.clearLineup} assignAthlete={this.assignAthlete} clearLineup={this.clearLineup} clearAthlete={this.clearAthlete}/>
         </div>
         <div>

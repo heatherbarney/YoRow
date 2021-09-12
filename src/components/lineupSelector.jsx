@@ -34,7 +34,7 @@ function lineupSelector(props) {
   else buttonClass = 'hideButton';
   
   let boatHeader;
-  if (props.boat.name !== null) {
+  if (props.boat.name !== '') {
     boatHeader = <h3>{`Boat: ${boat.name} (${boat.abbrev})`}</h3>
   }
   else boatHeader = <h3>Boat:</h3>
