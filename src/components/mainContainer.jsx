@@ -173,8 +173,8 @@ class MainContainer extends Component {
       <div className="mainContainer">
         <div className="selectionContainer">
           <RosterView roster={this.state.roster} getRoster = {this.getRoster}/>
-          <BoatContainer boatList={this.state.boatList} boat={this.state.boat} chooseBoat={this.chooseBoat} clearLineup={this.clearLineup}/>
-          <LineupSelector lineup={this.state.lineup} roster={this.state.roster} boat={this.state.boat} assignAthlete={this.assignAthlete} clearLineup={this.clearLineup} clearAthlete={this.clearAthlete}/>
+          <BoatContainer boatList={this.state.boatList}/>
+          <LineupSelector boatList={this.state.boatList} lineup={this.state.lineup} roster={this.state.roster} boat={this.state.boat} chooseBoat={this.chooseBoat} clearLineup={this.clearLineup} assignAthlete={this.assignAthlete} clearLineup={this.clearLineup} clearAthlete={this.clearAthlete}/>
         </div>
         <div>
         </div>

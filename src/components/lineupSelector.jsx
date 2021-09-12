@@ -1,5 +1,6 @@
 import React from 'react';
 import AthleteDropdown from './athleteDropDown.jsx';
+import BoatDropDown from './boatDropDown.jsx';
 
 function lineupSelector(props) {
 
@@ -28,6 +29,7 @@ function lineupSelector(props) {
     )
   }
 
+  // toggle display of save and clear lineups buttons based on if there is a boat defined or not
   let buttonClass;
   if (props.boat.seats.length) buttonClass = 'showButton';
   else buttonClass = 'hideButton';
@@ -35,7 +37,8 @@ function lineupSelector(props) {
 
   return (
     <div>        
-      <h2>Select Athletes</h2>
+      <h2>Create Lineup</h2>
+      <BoatDropDown boatList={props.boatList} chooseBoat={props.chooseBoat} clearLineup={props.clearLineup}/>
       <button className={buttonClass}>Save Lineup</button>
       <button className={buttonClass} onClick={props.clearLineup}>Clear Lineup</button>
       {rows}  
