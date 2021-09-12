@@ -32,8 +32,7 @@ class AddAthleteModal extends Component {
     render() {
         return(
           <div className="modalButton">
-          <button onClick={this.showModal}>Add Athlete</button>
-  
+            <button onClick={this.showModal}>Add Athlete</button>
         {
           this.state.showModal
             ? (
