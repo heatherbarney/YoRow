@@ -4,9 +4,8 @@ import BoatDropDown from './boatDropDown.jsx';
 
 function lineupSelector(props) {
 
-  const coxed = props.boat.coxed;
-  const seats = props.boat.seats;
-  const lineup = props.lineup;
+  const { boat, lineup } = props;
+  const { coxed, seats } = boat;
   
   const rows = [];
   
@@ -34,6 +33,11 @@ function lineupSelector(props) {
   if (props.boat.seats.length) buttonClass = 'showButton';
   else buttonClass = 'hideButton';
   
+  let boatHeader;
+  if (props.boat.name !== null) {
+    boatHeader = <h3>{`Boat: ${boat.name} (${boat.abbrev})`}</h3>
+  }
+  else boatHeader = <h3>Boat:</h3>
 
   return (
     <div>        
@@ -41,6 +45,7 @@ function lineupSelector(props) {
       <BoatDropDown boatList={props.boatList} chooseBoat={props.chooseBoat} clearLineup={props.clearLineup}/>
       <button className={buttonClass}>Save Lineup</button>
       <button className={buttonClass} onClick={props.clearLineup}>Clear Lineup</button>
+      {boatHeader}
       {rows}  
     </div>
     );
