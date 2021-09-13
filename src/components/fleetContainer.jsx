@@ -1,11 +1,12 @@
 import React from 'react';
+import BoatDeleteDropdown from './boatDeleteDropdown.jsx';
 
 function FleetContainer(props) {
 
-  const boats = props.boatList;
+  const { boatList } = props;
   const rows = [];
 
-  boats.forEach(boat => {
+  boatList.forEach(boat => {
     if (boat.available) {
       rows.push(
         <p><span className='name'>{boat.name}</span><span className='positions'>{' (' + boat.abbrev + ')'}</span></p>
@@ -17,7 +18,7 @@ function FleetContainer(props) {
       <div>
           <h2>Fleet</h2>
           <button>Add Boat</button>
-          <button>Delete Boat</button>
+          <BoatDeleteDropdown boatList = {boatList} getBoats = {props.getBoats}/>
           <div className='rosterContainer'>
             {rows}
           </div>

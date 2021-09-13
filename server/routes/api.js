@@ -25,6 +25,11 @@ router.delete('/roster/:name', debuggingCheck,
   (req, res) => res.status(200).json(res.locals.deletedAthlete)
 );
 
+router.delete('/boats/:name', debuggingCheck,
+  boatController.deleteBoat,
+  (req, res) => res.status(200).json(res.locals.deletedBoat)
+);
+
 function debuggingCheck (req, res, next) {
   console.log('Request made it to the API!');
   next();

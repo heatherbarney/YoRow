@@ -65,6 +65,7 @@ class MainContainer extends Component {
     this.clearLineup = this.clearLineup.bind(this);
     this.clearAthlete = this.clearAthlete.bind(this);
     this.getRoster = this.getRoster.bind(this);
+    this.getBoats = this.getBoats.bind(this);
     this.clearBoat = this.clearBoat.bind(this);
   }
 
@@ -212,7 +213,7 @@ class MainContainer extends Component {
       <div className="mainContainer">
         <div className="selectionContainer">
           <RosterView roster={this.state.roster} getRoster = {this.getRoster}/>
-          <FleetContainer boatList={this.state.boatList}/>
+          <FleetContainer boatList={this.state.boatList} getBoats = {this.getBoats}/>
           <LineupSelector clearBoat = {this.clearBoat} boatList={this.state.boatList} lineup={this.state.lineup} roster={this.state.roster} boat={this.state.boat} chooseBoat={this.chooseBoat} clearLineup={this.clearLineup} assignAthlete={this.assignAthlete} clearLineup={this.clearLineup} clearAthlete={this.clearAthlete}/>
         </div>
         <div>
