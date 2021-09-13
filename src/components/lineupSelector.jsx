@@ -42,7 +42,7 @@ function lineupSelector(props) {
   return (
     <div>        
       <h2>Create Lineup</h2>
-      <BoatDropDown boatList={props.boatList} chooseBoat={props.chooseBoat} clearLineup={props.clearLineup}/>
+      <BoatDropDown clearBoat = {props.clearBoat} boatList={props.boatList} chooseBoat={props.chooseBoat} clearLineup={props.clearLineup}/>
       <button className={buttonClass}>Save Lineup</button>
       <button className={buttonClass} onClick={props.clearLineup}>Clear Lineup</button>
       {boatHeader}

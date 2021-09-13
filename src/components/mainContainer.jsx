@@ -65,6 +65,7 @@ class MainContainer extends Component {
     this.clearLineup = this.clearLineup.bind(this);
     this.clearAthlete = this.clearAthlete.bind(this);
     this.getRoster = this.getRoster.bind(this);
+    this.clearBoat = this.clearBoat.bind(this);
   }
 
  componentDidMount () {
@@ -156,25 +157,30 @@ class MainContainer extends Component {
       )
     }))
   }
-
+  
   clearBoat(e) {
-    const currBoat = this.state.boat.name;
+    const currName = this.state.boat.name;
 
-    if (currBoat !== null) {
+    if (currName !== '') {
       this.setState(prevState => ({
-        roster: prevState.roster.map(
+        boatList: prevState.boatList.map(
           el => el.name === currName ? { ...el, available: true }: el
         )
       }))
     }
 
-    this.setState(prevState => ({
-      lineup: prevState.lineup.map(
-        el => el.number === seat ? { ...el, name: '' }: el
-      )
-    }))
+    this.setState({
+      boat: {
+        name: '',
+        class: null,
+        abbrev: null,
+        coxed: null,
+        sweep: null,
+        seats: [],
+      },
+    })
   }
-  
+
   chooseBoat(e) {
     const boatName = e.target.name;
     const currBoat = this.state.boat.name;
@@ -207,7 +213,7 @@ class MainContainer extends Component {
         <div className="selectionContainer">
           <RosterView roster={this.state.roster} getRoster = {this.getRoster}/>
           <FleetContainer boatList={this.state.boatList}/>
-          <LineupSelector boatList={this.state.boatList} lineup={this.state.lineup} roster={this.state.roster} boat={this.state.boat} chooseBoat={this.chooseBoat} clearLineup={this.clearLineup} assignAthlete={this.assignAthlete} clearLineup={this.clearLineup} clearAthlete={this.clearAthlete}/>
+          <LineupSelector clearBoat = {this.clearBoat} boatList={this.state.boatList} lineup={this.state.lineup} roster={this.state.roster} boat={this.state.boat} chooseBoat={this.chooseBoat} clearLineup={this.clearLineup} assignAthlete={this.assignAthlete} clearLineup={this.clearLineup} clearAthlete={this.clearAthlete}/>
         </div>
         <div>
         </div>

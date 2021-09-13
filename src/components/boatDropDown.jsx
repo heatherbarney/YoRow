@@ -36,6 +36,10 @@ class BoatDropdown extends Component {
           <button name={boat.name} id={boat.class} onClick={(event) => {this.props.chooseBoat(event); this.showMenu(event); this.props.clearLineup()}}>{boat.name + ' (' + boat.abbrev + ')'}</button>
         )
       });
+    
+      buttons.push(
+      <button className='clearButton' onClick={(event) => {this.props.clearBoat(event); this.showMenu(event); this.props.clearLineup(event)}}>Clear</button>
+      )
 
     return (
       <div className="dropdown">
