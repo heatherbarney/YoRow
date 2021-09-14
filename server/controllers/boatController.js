@@ -10,6 +10,17 @@ const boatController = {};
     });
   };
 
+  boatController.addBoat = (req, res, next) => {
+    const newBoat = new Boat(req.body);
+    newBoat.save(err => {
+      if (err) return next (err);
+      else {
+        res.locals.newBoat = newBoat
+        return next();
+      }
+    })
+  }
+
   boatController.deleteBoat = (req, res, next) => {
     const name = req.params.name;
     console.log(name);

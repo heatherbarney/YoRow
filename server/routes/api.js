@@ -20,6 +20,11 @@ router.post('/roster',
   (req, res) => res.status(200).json(res.locals.newAthlete)
 );
 
+router.post('/boats',
+  boatController.addBoat,
+  (req, res) => res.status(200).json(res.locals.newBoat)
+);
+
 router.delete('/roster/:name', debuggingCheck,
   rosterController.deleteAthlete,
   (req, res) => res.status(200).json(res.locals.deletedAthlete)

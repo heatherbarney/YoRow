@@ -2,15 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const seatSchema = new Schema({
-    name: {
-        type: String,
-        required: true,
-        enum: ['Bow', 'Stroke', 'Single Sculler', '1', '2', '3', '4', '5', '6', '7', '8']
-    },
     number: {
-        type: String,
+        type: Number,
         required: true,
-        enum: ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+        minimum: 1,
+        maximum: 8
     },
     side: {
         type: String,
@@ -45,7 +41,17 @@ const boatSchema = new Schema({
         type: Boolean,
         required: true,
     },
-    seats: [seatSchema]
+    seats: [seatSchema],
+    available: {
+        type: Boolean,
+        required: true
+    },
+    seatNum: {
+        type: Number,
+        required: true,
+        minimum: 1,
+        maximum: 8
+    }
   }, { collection: 'boats' });
 
   module.exports = mongoose.model('boat', boatSchema);

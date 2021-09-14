@@ -1,5 +1,6 @@
 import React from 'react';
 import BoatDeleteDropdown from './boatDeleteDropdown.jsx';
+import AddBoatModal from './addBoatModal.jsx';
 
 function FleetContainer(props) {
 
@@ -17,7 +18,7 @@ function FleetContainer(props) {
     return (
       <div>
           <h2>Fleet</h2>
-          <button>Add Boat</button>
+          <AddBoatModal boatList = {boatList} getBoats = {props.getBoats}/>
           <BoatDeleteDropdown boatList = {boatList} getBoats = {props.getBoats}/>
           <div className='rosterContainer'>
             {rows}
