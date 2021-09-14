@@ -24,6 +24,7 @@ class MainContainer extends Component {
     this.clearBoat = this.clearBoat.bind(this);
     this.addLineup = this.addLineup.bind(this);
     this.addActiveBoat = this.addActiveBoat.bind(this);
+    this.removeLineup = this.removeLineup.bind(this);
   }
 
  componentDidMount () {
@@ -152,7 +153,6 @@ class MainContainer extends Component {
     const lineup = this.state.lineupList[index];
 
     const assignedNames = lineup.map(object => object.name !== '' ? object.name : null);
-    console.log(assignedNames);
 
     this.setState(prevState => ({
       roster: prevState.roster.map(
@@ -245,6 +245,18 @@ class MainContainer extends Component {
     }))
   }
 
+  removeLineup(e) {
+    const index = e.target.id;
+
+    const newLineupList = [...this.state.lineupList];
+    newLineupList.splice(index, 1);
+    this.setState({lineupList: newLineupList});
+
+    const newActiveBoatList = [...this.state.activeBoatList];
+    newActiveBoatList.splice(index, 1);
+    this.setState({activeBoatList: newActiveBoatList});
+  }
+
   render() {
 
     return (
@@ -271,6 +283,7 @@ class MainContainer extends Component {
             clearLineup={this.clearLineup}
             clearAthlete={this.clearAthlete}
             addActiveBoat={this.addActiveBoat}
+            removeLineup={this.removeLineup}
           />
         </div>
         <div>

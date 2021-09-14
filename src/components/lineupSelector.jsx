@@ -91,7 +91,7 @@ function lineupSelector(props) {
         clearLineup={props.clearLineup}
       />
       <button className={buttonClass} id={props.lineupIndex} onClick={props.clearLineup}>Clear Lineup</button>
-      <button className={buttonClass} onClick={props.removeLineup}>Remove Lineup</button>
+      <button className={buttonClass} id={props.lineupIndex} onClick={(event) => {props.clearLineup(event); props.clearBoat(event); props.removeLineup(event)}}>Remove Lineup</button>
       {boatHeader}
       {rows}  
     </div>

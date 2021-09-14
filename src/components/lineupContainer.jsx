@@ -19,6 +19,7 @@ function lineupContainer(props) {
                 boatList={props.boatList} 
                 chooseBoat={props.chooseBoat} 
                 clearLineup={props.clearLineup}
+                removeLineup={props.removeLineup}
             />
         )
     })
