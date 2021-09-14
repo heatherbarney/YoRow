@@ -133,3 +133,9 @@ html {
   .modalButton {
     display: inline;
   }
+
+  .lineupContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }

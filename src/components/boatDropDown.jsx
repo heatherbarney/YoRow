@@ -33,12 +33,12 @@ class BoatDropdown extends Component {
     const buttons = [];
     this.props.boatList.forEach(boat => {
         buttons.push(
-          <button name={boat.name} id={boat.class} onClick={(event) => {this.props.chooseBoat(event); this.showMenu(event); this.props.clearLineup()}}>{boat.name + ' (' + boat.abbrev + ')'}</button>
+          <button name={boat.name} id={this.props.lineupIndex} onClick={(event) => {this.props.chooseBoat(event); this.showMenu(event); this.props.clearLineup(event)}}>{boat.name + ' (' + boat.abbrev + ')'}</button>
         )
       });
     
       buttons.push(
-      <button className='clearButton' onClick={(event) => {this.props.clearBoat(event); this.showMenu(event); this.props.clearLineup(event)}}>Clear</button>
+      <button className='clearButton' id={this.props.lineupIndex} onClick={(event) => {this.props.clearBoat(event); this.showMenu(event); this.props.clearLineup(event)}}>Clear</button>
       )
 
     return (

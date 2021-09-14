@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import LineupSelector from './lineupSelector.jsx';
+import LineupContainer from './lineupContainer.jsx';
 import FleetContainer from './fleetContainer.jsx';
 import RosterView from './rosterView.jsx';
-//import LineupsDisplay from './lineupsDisplay.jsx';
 
 
 class MainContainer extends Component {
@@ -11,52 +10,8 @@ class MainContainer extends Component {
     super();
     this.state = {
       roster: [],
-      lineup: [
-        {
-          number: '1',
-          name: ''
-        },
-        {
-          number: '2',
-          name: ''
-        },
-        {
-          number: '3',
-          name: ''
-        },
-        {
-          number: '4',
-          name: ''
-        },
-        {
-          number: '5',
-          name: ''
-        },
-        {
-          number: '6',
-          name: ''
-        },
-        {
-          number: '7',
-          name: ''
-        },
-        {
-          number: '8',
-          name: ''
-        },
-        {
-          number: '9',
-          name: ''
-        }, 
-      ],
-      boat: {
-        name: '',
-        class: null,
-        abbrev: null,
-        coxed: null,
-        sweep: null,
-        seats: [],
-      },
+      lineupList: [],
+      activeBoatList: [],
       boatList: [],
     }
 
@@ -67,6 +22,8 @@ class MainContainer extends Component {
     this.getRoster = this.getRoster.bind(this);
     this.getBoats = this.getBoats.bind(this);
     this.clearBoat = this.clearBoat.bind(this);
+    this.addLineup = this.addLineup.bind(this);
+    this.addActiveBoat = this.addActiveBoat.bind(this);
   }
 
  componentDidMount () {
@@ -100,11 +57,77 @@ class MainContainer extends Component {
       .then(json => this.setState({ boatList: json }));
   }
 
+  addLineup() {
+    const newLineup = {
+      boatName: '',
+      lineup: [  
+      {
+        number: '1',
+        name: ''
+      },
+      {
+        number: '2',
+        name: ''
+      },
+      {
+        number: '3',
+        name: ''
+      },
+      {
+        number: '4',
+        name: ''
+      },
+      {
+        number: '5',
+        name: ''
+      },
+      {
+        number: '6',
+        name: ''
+      },
+      {
+        number: '7',
+        name: ''
+      },
+      {
+        number: '8',
+        name: ''
+      },
+      {
+        number: '9',
+        name: ''
+      },
+    ] 
+  }
+
+    const newState = [...this.state.lineupList];
+    newState.push(newLineup);
+    this.setState({lineupList: newState});
+  }
+
+  addActiveBoat() {
+    const newBoat= {
+      name: '',
+      class: null,
+      abbrev: null,
+      coxed: null,
+      sweep: null,
+      seats: [],
+    }
+
+    const newState = [...this.state.activeBoatList];
+    newState.push(newBoat);
+    this.setState({activeBoatList: newState});
+  }
+
   assignAthlete(e) {
     const name = e.target.name;
     const seat = e.target.id;
+    const index = e.target.index;
+    const lineup = this.state.lineupList[index]
     const currName = this.state.lineup[seat-1].name;
 
+    // Update old athlete to be available
     if (currName !== '') {
       this.setState(prevState => ({
         roster: prevState.roster.map(
@@ -112,26 +135,29 @@ class MainContainer extends Component {
         )
       }))
     }
-
-    this.setState(prevState => ({
-      lineup: prevState.lineup.map(
-        el => el.number === seat ? { ...el, name: name }: el
-      )
-    }))
-
+    
+    // Update new athlete to be unavailable
     this.setState(prevState => ({
       roster: prevState.roster.map(
         el => el.name === name ? { ...el, available: false }: el
       )
     }))
+
+    // Update seat in lineup
+    const newLineup = lineup.map(el => el.number === seat ? { ...el, name: name }: el);
+    let lineupList = [...this.state.lineupList];
+    lineupList[index] = newLineup;
+    this.setState({lineupList});
   }
 
   clearLineup(e) {
-    this.setState(prevState => ({
-      lineup: prevState.lineup.map(
-        el => el.name !== '' ? { ...el, name: '' }: el
-      )
-    }))
+    const index = e.target.id;
+    const lineup = this.state.lineupList[index].lineup;
+
+    const newLineup = lineup.map(el => el.name !== '' ? { ...el, name: '' }: el);
+    let lineupList = [...this.state.lineupList];
+    lineupList[index] = newLineup;
+    this.setState({lineupList});
 
     this.setState(prevState => ({
       roster: prevState.roster.map(
@@ -184,7 +210,8 @@ class MainContainer extends Component {
 
   chooseBoat(e) {
     const boatName = e.target.name;
-    const currBoat = this.state.boat.name;
+    const index = e.target.id;
+    const currBoat = this.state.activeBoatList[index].name;
     
     if (currBoat !== '') {
       this.setState(prevState => ({
@@ -193,6 +220,11 @@ class MainContainer extends Component {
         )
       }))
     }
+
+    const newBoat = this.state.boatList.find(el => el.name === boatName);
+    let activeBoatList = [...this.state.activeBoatList];
+    activeBoatList[index] = newBoat;
+    this.setState({activeBoatList});
 
     this.state.boatList.forEach(boat => {
       if (boatName === boat.name) {
@@ -212,9 +244,28 @@ class MainContainer extends Component {
     return (
       <div className="mainContainer">
         <div className="selectionContainer">
-          <RosterView roster={this.state.roster} getRoster = {this.getRoster}/>
-          <FleetContainer boatList={this.state.boatList} getBoats = {this.getBoats}/>
-          <LineupSelector clearBoat = {this.clearBoat} boatList={this.state.boatList} lineup={this.state.lineup} roster={this.state.roster} boat={this.state.boat} chooseBoat={this.chooseBoat} clearLineup={this.clearLineup} assignAthlete={this.assignAthlete} clearLineup={this.clearLineup} clearAthlete={this.clearAthlete}/>
+          <RosterView 
+            roster={this.state.roster} 
+            getRoster = {this.getRoster}
+          />
+          <FleetContainer 
+            boatList={this.state.boatList} 
+            getBoats = {this.getBoats}
+          />
+          <LineupContainer 
+            addLineup = {this.addLineup} 
+            clearBoat = {this.clearBoat} 
+            boatList={this.state.boatList} 
+            lineupList={this.state.lineupList} 
+            roster={this.state.roster} 
+            activeBoatList={this.state.activeBoatList}
+            chooseBoat={this.chooseBoat} 
+            clearLineup={this.clearLineup}
+            assignAthlete={this.assignAthlete}
+            clearLineup={this.clearLineup}
+            clearAthlete={this.clearAthlete}
+            addActiveBoat={this.addActiveBoat}
+          />
         </div>
         <div>
         </div>
