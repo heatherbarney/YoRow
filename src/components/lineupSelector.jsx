@@ -6,7 +6,6 @@ function lineupSelector(props) {
 
   const { lineup } = props;
   const boat = props.activeBoatList[props.lineupIndex];
-  console.log(props.activeBoatList[props.lineupIndex]);
   const { coxed, seats, abbrev} = boat;
   
   const rows = [];

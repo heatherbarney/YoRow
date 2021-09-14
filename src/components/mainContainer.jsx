@@ -186,7 +186,8 @@ class MainContainer extends Component {
   }
   
   clearBoat(e) {
-    const currName = this.state.boat.name;
+    const index = e.target.id;
+    const currName = this.state.activeBoatList[index].name;
 
     if (currName !== '') {
       this.setState(prevState => ({
@@ -196,16 +197,19 @@ class MainContainer extends Component {
       }))
     }
 
-    this.setState({
-      boat: {
-        name: '',
-        class: null,
-        abbrev: null,
-        coxed: null,
-        sweep: null,
-        seats: [],
-      },
-    })
+    const emptyBoat = {
+      name: '',
+      class: null,
+      abbrev: null,
+      coxed: null,
+      sweep: null,
+      seats: [],
+    }
+
+    const activeBoatList = [...this.state.activeBoatList];
+    activeBoatList[index] = emptyBoat;
+    this.setState({activeBoatList});
+
   }
 
   chooseBoat(e) {
