@@ -58,9 +58,7 @@ class MainContainer extends Component {
   }
 
   addLineup() {
-    const newLineup = {
-      boatName: '',
-      lineup: [  
+    const newLineup = [  
       {
         number: '1',
         name: ''
@@ -98,7 +96,6 @@ class MainContainer extends Component {
         name: ''
       },
     ] 
-  }
 
     const newState = [...this.state.lineupList];
     newState.push(newLineup);
@@ -123,9 +120,9 @@ class MainContainer extends Component {
   assignAthlete(e) {
     const name = e.target.name;
     const seat = e.target.id;
-    const index = e.target.index;
-    const lineup = this.state.lineupList[index]
-    const currName = this.state.lineup[seat-1].name;
+    const index = e.target.title;
+    const lineup = this.state.lineupList[index];
+    const currName = lineup[seat-1].name;
 
     // Update old athlete to be available
     if (currName !== '') {
@@ -146,29 +143,35 @@ class MainContainer extends Component {
     // Update seat in lineup
     const newLineup = lineup.map(el => el.number === seat ? { ...el, name: name }: el);
     let lineupList = [...this.state.lineupList];
-    lineupList[index] = newLineup;
+    lineupList[index] = [...newLineup];
     this.setState({lineupList});
   }
 
   clearLineup(e) {
     const index = e.target.id;
-    const lineup = this.state.lineupList[index].lineup;
+    const lineup = this.state.lineupList[index];
 
-    const newLineup = lineup.map(el => el.name !== '' ? { ...el, name: '' }: el);
-    let lineupList = [...this.state.lineupList];
-    lineupList[index] = newLineup;
-    this.setState({lineupList});
+    const assignedNames = lineup.map(object => object.name !== '' ? object.name : null);
+    console.log(assignedNames);
 
     this.setState(prevState => ({
       roster: prevState.roster.map(
-        el => el.available === false ? { ...el, available: true }: el
+        el => assignedNames.includes(el.name) ? { ...el, available: true }: el
       )
-    })) 
+    }))  
+
+    const newLineup = lineup.map(el => el.name !== '' ? { ...el, name: '' }: el);
+    let lineupList = [...this.state.lineupList];
+    lineupList[index] = [...newLineup];
+    this.setState({lineupList});
+
   }
 
   clearAthlete(e) {
     const seat = e.target.id;
-    const currName = this.state.lineup[seat-1].name;
+    const index = e.target.title;
+    const lineup = this.state.lineupList[index];
+    const currName = lineup[seat-1].name;
 
     if (currName !== '') {
       this.setState(prevState => ({
@@ -178,11 +181,10 @@ class MainContainer extends Component {
       }))
     }
 
-    this.setState(prevState => ({
-      lineup: prevState.lineup.map(
-        el => el.number === seat ? { ...el, name: '' }: el
-      )
-    }))
+    const newLineup = lineup.map(el => el.number === seat ? { ...el, name: '' }: el);
+    let lineupList = [...this.state.lineupList];
+    lineupList[index] = [...newLineup];
+    this.setState({lineupList});
   }
   
   clearBoat(e) {

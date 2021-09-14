@@ -35,11 +35,11 @@ class AthleteDropdown extends Component {
     roster.forEach(athlete => {
       if (athlete.positions.includes(this.props.side) && athlete.available) {
         buttons.push(
-          <button name={athlete.name} id={this.props.seat} index = {this.props.lineupIndex} onClick={(event) => {this.props.assignAthlete(event); this.showMenu(event);}}>{athlete.name}</button>)
+          <button name={athlete.name} id={this.props.seat} title = {this.props.lineupIndex} onClick={(event) => {this.props.assignAthlete(event); this.showMenu(event);}}>{athlete.name}</button>)
       }
     })
     buttons.push(
-      <button className='clearButton' id={this.props.seat} index = {this.props.lineupIndex}onClick={(event) => {this.props.clearAthlete(event); this.showMenu(event);}}>Clear</button>
+      <button className='clearButton' id={this.props.seat} title = {this.props.lineupIndex} onClick={(event) => {this.props.clearAthlete(event); this.showMenu(event);}}>Clear</button>
     )
 
 

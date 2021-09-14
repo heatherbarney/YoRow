@@ -90,8 +90,8 @@ function lineupSelector(props) {
         chooseBoat={props.chooseBoat} 
         clearLineup={props.clearLineup}
       />
-      <button className={buttonClass}>Save Lineup</button>
-      <button className={buttonClass} onClick={props.clearLineup}>Clear Lineup</button>
+      <button className={buttonClass} id={props.lineupIndex} onClick={props.clearLineup}>Clear Lineup</button>
+      <button className={buttonClass} onClick={props.removeLineup}>Remove Lineup</button>
       {boatHeader}
       {rows}  
     </div>
