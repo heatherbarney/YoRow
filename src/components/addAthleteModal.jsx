@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AthleteForm from "./athleteForm.jsx";
+import { Button } from '@material-ui/core';
 
 class AddAthleteModal extends Component {
 
@@ -32,7 +33,7 @@ class AddAthleteModal extends Component {
     render() {
         return(
           <div className="modalButton">
-            <button onClick={this.showModal}>Add Athlete</button>
+            <Button variant="outlined" color="primary" onClick={this.showModal}>Add Athlete</Button>
         {
           this.state.showModal
             ? (

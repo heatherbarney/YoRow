@@ -1,5 +1,7 @@
 import React from 'react';
 import LineupSelector from './lineupSelector.jsx';
+import { Typography } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 
 function lineupContainer(props) {
     const { lineupList, activeBoatList } = props;
@@ -26,11 +28,11 @@ function lineupContainer(props) {
 
     return(
         <div>
-        <div>
-            <h2>Create Lineups</h2>
-            <button onClick = {(e) => {props.addLineup(); props.addActiveBoat()}}>Add Lineup</button>
+        <div className="lineupHeader">
+            <Typography variant="h3">Create Lineups</Typography>
+            <Button variant="contained" color="primary" onClick = {(e) => {props.addLineup(); props.addActiveBoat()}}>Add Lineup</Button>
         </div>
-        <div className='lineupContainer'>
+        <div className="lineupsContainer">
             {lineups}
         </div>
         </div>

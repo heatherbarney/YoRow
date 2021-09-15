@@ -1,6 +1,7 @@
 import React from 'react';
 import DeleteDropdown from './deleteDropdown.jsx';
 import AddAthleteModal from './addAthleteModal.jsx';
+import { Typography } from '@material-ui/core';
 
 function RosterView(props) {
 
@@ -22,11 +23,11 @@ function RosterView(props) {
   }
   
     return (
-      <div>
-          <h2>Roster</h2>
+      <div className="rosterContainer">
+          <Typography variant="h3">Roster</Typography>
           <AddAthleteModal roster = {roster} getRoster = {props.getRoster}/>
           <DeleteDropdown roster = {roster} getRoster = {props.getRoster}/>
-          <div className='rosterContainer'>
+          <div>
             {rows}
           </div>
       </div>

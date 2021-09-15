@@ -1,6 +1,7 @@
 import React from 'react';
 import AthleteDropdown from './athleteDropDown.jsx';
 import BoatDropDown from './boatDropDown.jsx';
+import { Button } from '@material-ui/core';
 
 function lineupSelector(props) {
 
@@ -71,10 +72,16 @@ function lineupSelector(props) {
   }
 
   // toggle display of save and clear lineups buttons based on if there is a boat defined or not
-  let buttonClass;
-  if (boat.seats.length) buttonClass = 'showButton';
-  else buttonClass = 'hideButton';
-  
+  let clearButton;
+  if (boat.name !== '') {
+    clearButton = <Button variant="outlined" color="secondary" id={props.lineupIndex} onClick={props.clearLineup}>Clear Lineup</Button>
+  }
+ 
+  let removeButton;
+  if (boat.name !== '') {
+    removeButton = <Button variant="outlined" color="secondary" id={props.lineupIndex} onClick={(event) => {props.clearLineup(event); props.clearBoat(event); props.removeLineup(event)}}>Remove Lineup</Button>
+  }
+
   let boatHeader;
   if (boat.name !== '') {
     boatHeader = <h3>{`Boat: ${boat.name} (${boat.abbrev})`}</h3>
@@ -82,7 +89,7 @@ function lineupSelector(props) {
   else boatHeader = <h3>Boat:</h3>
 
   return (
-    <div>        
+    <div className="lineupContainer">        
       <BoatDropDown 
         lineupIndex = {props.lineupIndex} 
         clearBoat = {props.clearBoat} 
@@ -90,10 +97,10 @@ function lineupSelector(props) {
         chooseBoat={props.chooseBoat} 
         clearLineup={props.clearLineup}
       />
-      <button className={buttonClass} id={props.lineupIndex} onClick={props.clearLineup}>Clear Lineup</button>
-      <button className={buttonClass} id={props.lineupIndex} onClick={(event) => {props.clearLineup(event); props.clearBoat(event); props.removeLineup(event)}}>Remove Lineup</button>
+      {clearButton}
       {boatHeader}
       {rows}  
+      {removeButton}
     </div>
     );
 }

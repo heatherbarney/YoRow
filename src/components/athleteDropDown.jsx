@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { Button } from '@material-ui/core';
+import GreenButton from './greenButton.jsx';
+import RedButton from './redButton.jsx';
 
 class AthleteDropdown extends Component {
 
@@ -42,12 +45,26 @@ class AthleteDropdown extends Component {
       <button className='clearButton' id={this.props.seat} title = {this.props.lineupIndex} onClick={(event) => {this.props.clearAthlete(event); this.showMenu(event);}}>Clear</button>
     )
 
+    let selectButton;
 
+    switch (this.props.side) {
+      case 'Port':
+        selectButton = <RedButton onclick={this.showMenu}>Select Athlete</RedButton>
+        break;
+      case 'Starboard':
+        selectButton = <GreenButton onclick={this.showMenu}>Select Athlete</GreenButton>
+        break;
+      case 'Scull':
+        selectButton = <Button variant="outlined" onClick={this.showMenu}>Select Athlete</Button>
+        break;
+      case 'Cox':
+        selectButton = <Button variant="outlined" onClick={this.showMenu}>Select Athlete</Button>
+        break;
+    }
+      
     return (
       <div className="dropdown">
-        <button onClick={this.showMenu} className={this.props.side}>
-          Select Athlete
-        </button>
+        {selectButton}
         
         {
           this.state.showMenu

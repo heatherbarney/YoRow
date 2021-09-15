@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Button } from '@material-ui/core';
+
 
 class DeleteDropdown extends Component {
 
@@ -55,9 +57,9 @@ class DeleteDropdown extends Component {
 
     return (
       <div className="dropdown">
-        <button onClick={this.showMenu} className={this.props.side}>
+        <Button variant="outlined" color="primary" onClick={this.showMenu} className={this.props.side}>
           Delete Athlete
-        </button>
+        </Button>
         
         {
           this.state.showMenu

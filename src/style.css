@@ -14,6 +14,11 @@ html {
     font-size: 1.6rem;
   }
   
+  button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
   /* Dropdown Button */
   .dropbtn {
     background-color: lightgray;
@@ -64,8 +69,8 @@ html {
   }
   
   .selectionContainer {
-    display: flex;
-    justify-content: space-evenly;
+    display: grid;
+    grid-template-columns: 225px 1fr 3fr;
   }
 
   .selectorLabel {
@@ -84,8 +89,8 @@ html {
   }
   
   .rosterContainer {
-    flex-flow: column wrap;
-    height: 600px;
+    padding: 20px;
+    border-right: 1px solid lightgrey;
   }
   
   .name {
@@ -134,8 +139,25 @@ html {
     display: inline;
   }
 
-  .lineupContainer {
+  .lineupsContainer {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: left;
+  }
+
+  .fleetContainer {
+    border-right: 1px solid lightgrey;
+    padding: 20px;
+  }
+
+  .lineupContainer {
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-right: 10px;
+    border-right: 1px solid lightgrey;
+  }
+
+  .lineupHeader {
+    padding-left: 20px;
+    padding-top: 20px;
   }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import LineupContainer from './lineupContainer.jsx';
 import FleetContainer from './fleetContainer.jsx';
 import RosterView from './rosterView.jsx';
+import { Divider } from '@material-ui/core';
 
 
 class MainContainer extends Component {
@@ -262,13 +263,13 @@ class MainContainer extends Component {
     return (
       <div className="mainContainer">
         <div className="selectionContainer">
-          <RosterView 
-            roster={this.state.roster} 
-            getRoster = {this.getRoster}
-          />
           <FleetContainer 
             boatList={this.state.boatList} 
             getBoats = {this.getBoats}
+          />
+          <RosterView 
+            roster={this.state.roster} 
+            getRoster = {this.getRoster}
           />
           <LineupContainer 
             addLineup = {this.addLineup} 

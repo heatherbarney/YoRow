@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import BoatForm from "./boatForm.jsx";
+import { Button } from '@material-ui/core';
 
 class AddBoatModal extends Component {
 
@@ -32,7 +33,7 @@ class AddBoatModal extends Component {
     render() {
         return(
           <div className="modalButton">
-            <button onClick={this.showModal}>Add Boat</button>
+            <Button variant="outlined" color="primary" onClick={this.showModal}>Add Boat</Button>
         {
           this.state.showModal
             ? (

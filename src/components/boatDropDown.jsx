@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button } from '@material-ui/core';
 
 class BoatDropdown extends Component {
 
@@ -45,9 +46,9 @@ class BoatDropdown extends Component {
 
     return (
       <div className="dropdown">
-        <button onClick={this.showMenu}>
+        <Button variant="contained" color="secondary" onClick={this.showMenu}>
           Select Boat
-        </button>
+        </Button>
         
         {
           this.state.showMenu
