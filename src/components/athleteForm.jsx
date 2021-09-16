@@ -32,8 +32,8 @@ class AthleteForm extends Component {
       const positions = [];
       if (this.state.port) positions.push('Port');
       if (this.state.starboard) positions.push('Starboard');
-      if (this.state.sculler) positions.push('Sculler');
-      if (this.state.coxswain) positions.push('Coxswain');
+      if (this.state.sculler) positions.push('Scull');
+      if (this.state.coxswain) positions.push('Cox');
 
       //validate data
       let duplicate = false;

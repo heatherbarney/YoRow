@@ -1,10 +1,12 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 
-const RedButton = () => {
+const RedButton = (props) => {
   return(
     <Button 
-    variant="outlined" style={{backgroundColor: '#FFFFFF', color: '#f44336'}}
+      variant="outlined" 
+      style={{backgroundColor: '#FFFFFF', color: '#f44336'}}
+      onClick={props.showMenu}
     >Select Athlete</Button>
   )
 }

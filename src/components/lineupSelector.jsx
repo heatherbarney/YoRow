@@ -73,13 +73,14 @@ function lineupSelector(props) {
 
   // toggle display of save and clear lineups buttons based on if there is a boat defined or not
   let clearButton;
+  console.log('props.lineupIndex from lineupSelector = ' + props.lineupIndex) 
   if (boat.name !== '') {
-    clearButton = <Button variant="outlined" color="secondary" id={props.lineupIndex} onClick={props.clearLineup}>Clear Lineup</Button>
+    clearButton = <button className="crButton" id={props.lineupIndex} onClick={(event) => {props.clearLineup(event)}}>Clear Lineup</button>
   }
  
   let removeButton;
   if (boat.name !== '') {
-    removeButton = <Button variant="outlined" color="secondary" id={props.lineupIndex} onClick={(event) => {props.clearLineup(event); props.clearBoat(event); props.removeLineup(event)}}>Remove Lineup</Button>
+    removeButton = <button className="crButton" id={props.lineupIndex} onClick={(event) => {props.clearLineup(event); props.clearBoat(event); props.removeLineup(event)}}>Remove Button</button>
   }
 
   let boatHeader;

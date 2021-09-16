@@ -49,10 +49,10 @@ class AthleteDropdown extends Component {
 
     switch (this.props.side) {
       case 'Port':
-        selectButton = <RedButton onclick={this.showMenu}>Select Athlete</RedButton>
+        selectButton = <RedButton showMenu={this.showMenu}>Select Athlete</RedButton>
         break;
       case 'Starboard':
-        selectButton = <GreenButton onclick={this.showMenu}>Select Athlete</GreenButton>
+        selectButton = <GreenButton showMenu={this.showMenu}>Select Athlete</GreenButton>
         break;
       case 'Scull':
         selectButton = <Button variant="outlined" onClick={this.showMenu}>Select Athlete</Button>

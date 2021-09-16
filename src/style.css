@@ -143,6 +143,7 @@ html {
     display: flex;
     flex-direction: row;
     justify-content: left;
+    flex-wrap: wrap;
   }
 
   .fleetContainer {
@@ -160,4 +161,23 @@ html {
   .lineupHeader {
     padding-left: 20px;
     padding-top: 20px;
+  }
+
+  .crButton {
+    color: #dc004e;
+    background-color: #fff;
+    padding: .8rem 1.7rem;
+    font-family: 'Roboto', sans-serif;
+    font-size: .85rem;
+    outline: 0;
+    border: 1px solid #dc004e;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    text-transform: uppercase;
+    margin: 0px
+  }
+
+  .crButton:hover {
+    background-color: #fce4ec;
   }

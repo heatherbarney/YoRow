@@ -34,6 +34,7 @@ class MainContainer extends Component {
  }
 
  getRoster() {
+  console.log('getRoster called')
   fetch('/api/roster'
   ,{
     headers : { 
@@ -47,6 +48,7 @@ class MainContainer extends Component {
 }
 
   getBoats() {
+    console.log('getBoats called')
     fetch('/api/boats'
     ,{
       headers : { 
@@ -60,6 +62,7 @@ class MainContainer extends Component {
   }
 
   addLineup() {
+    console.log('addLineup called')
     const newLineup = [  
       {
         number: '1',
@@ -105,6 +108,7 @@ class MainContainer extends Component {
   }
 
   addActiveBoat() {
+    console.log('addActiveBoat called')
     const newBoat= {
       name: '',
       class: null,
@@ -120,6 +124,7 @@ class MainContainer extends Component {
   }
 
   assignAthlete(e) {
+    console.log('assignAthlete called')
     const name = e.target.name;
     const seat = e.target.id;
     const index = e.target.title;
@@ -150,7 +155,11 @@ class MainContainer extends Component {
   }
 
   clearLineup(e) {
+    console.log('clearLineup called');
     const index = e.target.id;
+    console.log(e.target);
+    console.log(e.target.id);
+    console.log('index from clearLineup: ' + index);
     const lineup = this.state.lineupList[index];
 
     const assignedNames = lineup.map(object => object.name !== '' ? object.name : null);
@@ -165,10 +174,10 @@ class MainContainer extends Component {
     let lineupList = [...this.state.lineupList];
     lineupList[index] = [...newLineup];
     this.setState({lineupList});
-
   }
 
   clearAthlete(e) {
+    console.log('clearAthlete called')
     const seat = e.target.id;
     const index = e.target.title;
     const lineup = this.state.lineupList[index];
@@ -189,7 +198,8 @@ class MainContainer extends Component {
   }
   
   clearBoat(e) {
-    const index = e.target.id;
+    console.log('clearBoat called');
+    const index = e.target.title;
     const currName = this.state.activeBoatList[index].name;
 
     if (currName !== '') {
@@ -216,6 +226,7 @@ class MainContainer extends Component {
   }
 
   chooseBoat(e) {
+    console.log('chooseBoat called');
     const boatName = e.target.name;
     const index = e.target.id;
     const currBoat = this.state.activeBoatList[index].name;
@@ -233,12 +244,6 @@ class MainContainer extends Component {
     activeBoatList[index] = newBoat;
     this.setState({activeBoatList});
 
-    this.state.boatList.forEach(boat => {
-      if (boatName === boat.name) {
-        this.setState({boat: boat})
-      }
-    })
-
     this.setState(prevState => ({
       boatList: prevState.boatList.map(
         el => el.name === boatName ? { ...el, available: false }: el
@@ -247,7 +252,9 @@ class MainContainer extends Component {
   }
 
   removeLineup(e) {
-    const index = e.target.id;
+    console.log('removeLineup called')
+    const index = e.target.title;
+    console.log('Index from removeLineup: ' + index);
 
     const newLineupList = [...this.state.lineupList];
     newLineupList.splice(index, 1);
