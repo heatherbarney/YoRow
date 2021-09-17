@@ -151,7 +151,7 @@ class BoatForm extends Component {
       else {
       const body = {
         name: this.state.boatName,
-        class: this.state.boatClass,
+        boatClass: this.state.boatClass,
         abbrev: this.state.abbrev,
         coxed: this.state.coxed,
         sweep: this.state.sweep,

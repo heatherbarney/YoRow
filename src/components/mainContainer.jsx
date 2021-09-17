@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import LineupContainer from './lineupContainer.jsx';
 import FleetContainer from './fleetContainer.jsx';
 import RosterView from './rosterView.jsx';
-import { Divider } from '@material-ui/core';
-
 
 class MainContainer extends Component {
   
@@ -26,6 +24,7 @@ class MainContainer extends Component {
     this.addLineup = this.addLineup.bind(this);
     this.addActiveBoat = this.addActiveBoat.bind(this);
     this.removeLineup = this.removeLineup.bind(this);
+    this.retrieveLineups = this.retrieveLineups.bind(this);
   }
 
  componentDidMount () {
@@ -63,7 +62,8 @@ class MainContainer extends Component {
 
   addLineup() {
     console.log('addLineup called')
-    const newLineup = [  
+    const newLineup = {
+      seats: [  
       {
         number: '1',
         name: ''
@@ -100,7 +100,7 @@ class MainContainer extends Component {
         number: '9',
         name: ''
       },
-    ] 
+    ]}
 
     const newState = [...this.state.lineupList];
     newState.push(newLineup);
@@ -123,13 +123,31 @@ class MainContainer extends Component {
     this.setState({activeBoatList: newState});
   }
 
+  retrieveLineups(date) {
+    fetch(`/api/practice/${date}`
+    ,{
+      headers : { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+       }
+    }
+    )
+      .then(data => data.json())
+      .then(json => { 
+        const boats = json.boats.slice();
+        const lineups = json.lineups.slice(); 
+        this.setState({activeBoatList: boats, lineupList: lineups});
+      })
+  }
+
   assignAthlete(e) {
     console.log('assignAthlete called')
     const name = e.target.name;
     const seat = e.target.id;
     const index = e.target.title;
     const lineup = this.state.lineupList[index];
-    const currName = lineup[seat-1].name;
+    console.log(lineup);
+    const currName = lineup.seats[seat-1].name;
 
     // Update old athlete to be available
     if (currName !== '') {
@@ -148,21 +166,17 @@ class MainContainer extends Component {
     }))
 
     // Update seat in lineup
-    const newLineup = lineup.map(el => el.number === seat ? { ...el, name: name }: el);
+    const newLineup = lineup.seats.map(el => el.number === seat ? { ...el, name: name }: el);
     let lineupList = [...this.state.lineupList];
-    lineupList[index] = [...newLineup];
+    lineupList[index].seats = [...newLineup];
     this.setState({lineupList});
   }
 
   clearLineup(e) {
-    console.log('clearLineup called');
     const index = e.target.id;
-    console.log(e.target);
-    console.log(e.target.id);
-    console.log('index from clearLineup: ' + index);
     const lineup = this.state.lineupList[index];
 
-    const assignedNames = lineup.map(object => object.name !== '' ? object.name : null);
+    const assignedNames = lineup.seats.map(object => object.name !== '' ? object.name : null);
 
     this.setState(prevState => ({
       roster: prevState.roster.map(
@@ -170,9 +184,9 @@ class MainContainer extends Component {
       )
     }))  
 
-    const newLineup = lineup.map(el => el.name !== '' ? { ...el, name: '' }: el);
+    const newLineup = lineup.seats.map(el => el.name !== '' ? { ...el, name: '' }: el);
     let lineupList = [...this.state.lineupList];
-    lineupList[index] = [...newLineup];
+    lineupList[index].seats = [...newLineup];
     this.setState({lineupList});
   }
 
@@ -199,7 +213,7 @@ class MainContainer extends Component {
   
   clearBoat(e) {
     console.log('clearBoat called');
-    const index = e.target.title;
+    const index = e.target.id;
     const currName = this.state.activeBoatList[index].name;
 
     if (currName !== '') {
@@ -292,6 +306,7 @@ class MainContainer extends Component {
             clearAthlete={this.clearAthlete}
             addActiveBoat={this.addActiveBoat}
             removeLineup={this.removeLineup}
+            retrieveLineups={this.retrieveLineups}
           />
         </div>
         <div>

@@ -2,6 +2,7 @@ const express = require('express');
 
 const rosterController = require('../controllers/rosterController');
 const boatController = require('../controllers/boatController');
+const practiceController = require('../controllers/practiceController');
 
 const router = express.Router();
 
@@ -15,6 +16,11 @@ router.get('/boats',
   (req, res) => res.status(200).json(res.locals.fleet)
 );
 
+router.get('/practice/:date', 
+  practiceController.getPractice,
+  (req, res) => res.status(200).json(res.locals.practice)
+);
+
 router.post('/roster',
   rosterController.addAthlete,
   (req, res) => res.status(200).json(res.locals.newAthlete)
@@ -24,6 +30,12 @@ router.post('/boats',
   boatController.addBoat,
   (req, res) => res.status(200).json(res.locals.newBoat)
 );
+
+router.post('/practice', debuggingCheck,
+  practiceController.addPractice,
+  (req, res) => res.status(200).json(res.locals.newPractice)
+);
+
 
 router.delete('/roster/:name', debuggingCheck,
   rosterController.deleteAthlete,

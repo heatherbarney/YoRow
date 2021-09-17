@@ -51,7 +51,7 @@ class BoatDeleteDropdown extends Component {
     const { boatList }= this.props
     boatList.forEach(boat => {
         buttons.push(
-          <button name={boat.name} onClick={(event) => {this.deleteBoat(event); this.showMenu(event);}}>{boat.name}</button>)
+          <button name={boat.name} onClick={(event) => {this.deleteBoat(event); this.showMenu(event);}}>{boat.name + ' (' + boat.abbrev + ')'}</button>)
     })
 
     return (

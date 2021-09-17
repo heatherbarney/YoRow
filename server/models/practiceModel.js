@@ -14,7 +14,7 @@ const seatSchema = new Schema({
         enum: ['Port', 'Starboard', 'Scull']
     }
 });
-
+    
 const boatSchema = new Schema({
     name: { 
         type: String,
@@ -52,6 +52,30 @@ const boatSchema = new Schema({
         minimum: 1,
         maximum: 8
     }
-  }, { collection: 'boats' });
+  })
 
-  module.exports = mongoose.model('boat', boatSchema);
+const positionSchema = new Schema({
+    number: {
+        type: String,
+        required: true,
+        enum: ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+    },
+    name: {
+        type: String,
+    }
+})
+
+const lineupSchema = new Schema({
+    seats: [positionSchema],
+})
+
+const practiceSchema = new Schema({
+    date: {
+        type: Date,
+        required: true,
+    },
+    lineups: [lineupSchema],
+    boats: [boatSchema]
+})
+
+module.exports = mongoose.model('practices', practiceSchema);

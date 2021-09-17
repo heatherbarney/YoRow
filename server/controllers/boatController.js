@@ -11,7 +11,8 @@ const boatController = {};
   };
 
   boatController.addBoat = (req, res, next) => {
-    const newBoat = new Boat(req.body);
+    const { name, boatClass, abbrev, coxed, sweep, seats, seatNum, available } = req.body;
+    const newBoat = new Boat({ name, boatClass, abbrev, coxed, sweep, seats, seatNum, available });
     newBoat.save(err => {
       if (err) return next (err);
       else {

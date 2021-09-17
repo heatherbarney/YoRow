@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { Component } from 'react';
 import LineupSelector from './lineupSelector.jsx';
 import { Typography } from '@material-ui/core';
 import { Button } from '@material-ui/core';
+import SaveLineupModal from './saveLineupModal.jsx';
+import RetrieveLineupModal from './retrieveLineupModal.jsx';
 
-function lineupContainer(props) {
-    const { lineupList, activeBoatList } = props;
+class LineupContainer extends Component {
+
+  constructor(props) {
+    super(props);
+  }
+
+  saveLineups() {
+
+  };
+
+  render() {
+    const { lineupList, activeBoatList } = this.props;
 
     const lineups = [];
 
@@ -14,30 +26,35 @@ function lineupContainer(props) {
                 lineupIndex = {index}
                 lineup = {lineup} 
                 activeBoatList = {activeBoatList} 
-                clearAthlete = {props.clearAthlete} 
-                assignAthlete = {props.assignAthlete} 
-                roster = {props.roster}
-                clearBoat = {props.clearBoat}
-                boatList={props.boatList} 
-                chooseBoat={props.chooseBoat} 
-                clearLineup={props.clearLineup}
-                removeLineup={props.removeLineup}
+                clearAthlete = {this.props.clearAthlete} 
+                assignAthlete = {this.props.assignAthlete} 
+                roster = {this.props.roster}
+                clearBoat = {this.props.clearBoat}
+                boatList={this.props.boatList} 
+                chooseBoat={this.props.chooseBoat} 
+                clearLineup={this.props.clearLineup}
+                removeLineup={this.props.removeLineup}
             />
         )
     })
+
+      let modal;
+      if (lineupList[0]) modal = <SaveLineupModal activeBoatList={this.props.activeBoatList} lineupList={this.props.lineupList}/>
 
     return(
         <div>
         <div className="lineupHeader">
             <Typography variant="h3">Create Lineups</Typography>
-            <Button variant="contained" color="primary" onClick = {(e) => {props.addLineup(); props.addActiveBoat()}}>Add Lineup</Button>
+            <Button variant="contained" color="primary" onClick = {(e) => {this.props.addLineup(); this.props.addActiveBoat()}}>Add Lineup</Button>
+            <RetrieveLineupModal retrieveLineups={this.props.retrieveLineups}/>
+            {modal}
         </div>
         <div className="lineupsContainer">
             {lineups}
         </div>
         </div>
     )
-
+  }
 }
 
-export default lineupContainer;
+export default LineupContainer;

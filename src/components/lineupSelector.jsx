@@ -1,14 +1,13 @@
 import React from 'react';
 import AthleteDropdown from './athleteDropDown.jsx';
 import BoatDropDown from './boatDropDown.jsx';
-import { Button } from '@material-ui/core';
 
 function lineupSelector(props) {
 
   const { lineup } = props;
   const boat = props.activeBoatList[props.lineupIndex];
   const { coxed, seats, abbrev} = boat;
-  
+
   const rows = [];
   
   for (let i = 0; i < seats.length; i++) {
@@ -42,7 +41,7 @@ function lineupSelector(props) {
     }
     rows.push(
       <div>
-        <label className='selectorLabel'><span className='seatSpan'>{seatName}</span><span>{': ' + lineup[i].name}</span></label>
+        <label className='selectorLabel'><span className='seatSpan'>{seatName}</span><span>{': ' + lineup.seats[i].name}</span></label>
         <AthleteDropdown 
           lineupIndex = {props.lineupIndex} 
           clearAthlete = {props.clearAthlete} 
@@ -59,7 +58,7 @@ function lineupSelector(props) {
   if (coxed) {
     rows.push(
       <div>
-        <label className='selectorLabel'><span className='seatSpan'>{'Coxswain: '}</span><span>{lineup[8].name}</span></label>
+        <label className='selectorLabel'><span className='seatSpan'>{'Coxswain: '}</span><span>{lineup.seats[8].name}</span></label>
         <AthleteDropdown 
           lineupIndex = {props.lineupIndex} 
           assignAthlete={props.assignAthlete} 
@@ -80,7 +79,7 @@ function lineupSelector(props) {
  
   let removeButton;
   if (boat.name !== '') {
-    removeButton = <button className="crButton" id={props.lineupIndex} onClick={(event) => {props.clearLineup(event); props.clearBoat(event); props.removeLineup(event)}}>Remove Button</button>
+    removeButton = <button className="crButton" id={props.lineupIndex} onClick={(event) => {props.clearLineup(event); props.clearBoat(event); props.removeLineup(event)}}>Remove Lineup</button>
   }
 
   let boatHeader;
@@ -99,8 +98,10 @@ function lineupSelector(props) {
         clearLineup={props.clearLineup}
       />
       {clearButton}
+      <div>
       {boatHeader}
-      {rows}  
+      {rows} 
+      </div> 
       {removeButton}
     </div>
     );

@@ -11,7 +11,8 @@ rosterController.getRoster = (req, res, next) => {
 };
 
 rosterController.addAthlete = (req, res, next) => {
-  const newAthlete = new Athlete(req.body);
+  const { name, positions, available } = req.body;
+  const newAthlete = new Athlete({ name, positions, available });
   newAthlete.save(err => {
     if (err) return next (err);
     else {
@@ -23,7 +24,6 @@ rosterController.addAthlete = (req, res, next) => {
 
 rosterController.deleteAthlete = (req, res, next) => {
   const name = req.params.name;
-  console.log(name)
   Athlete.findOneAndRemove({name: name}, (err, athlete) => {
     if (err) return next(err);
     res.locals.deletedAthlete = athlete;
