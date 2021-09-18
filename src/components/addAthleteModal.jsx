@@ -41,7 +41,9 @@ class AddAthleteModal extends Component {
                 <div className = "modalContent">
                   <div className = "modalBody">
                     <AthleteForm roster = {this.props.roster} getRoster = {this.props.getRoster} closeModal = {this.showModal}/>
-                    <button onClick={this.showModal}>Exit</button>
+                    <div className="exitButton">
+                    <Button onClick={this.showModal} variant="outlined" color="primary">Exit</Button>
+                    </div>
                   </div>
                 </div>
               </div>

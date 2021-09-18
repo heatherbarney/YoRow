@@ -12,7 +12,7 @@ function lineupSelector(props) {
   
   for (let i = 0; i < seats.length; i++) {
     let seatName;
-    if (abbrev === '1x') seatName = 'Single Sculler';
+    if (abbrev === '1x') seatName = 'Sculler';
     else if (i === seats.length - 1) seatName = 'Stroke Seat';
     else {
       switch (seats[i].number) {
@@ -74,19 +74,19 @@ function lineupSelector(props) {
   let clearButton;
   console.log('props.lineupIndex from lineupSelector = ' + props.lineupIndex) 
   if (boat.name !== '') {
-    clearButton = <button className="crButton" id={props.lineupIndex} onClick={(event) => {props.clearLineup(event)}}>Clear Lineup</button>
+    clearButton = <button className="clearLineupButton" id={props.lineupIndex} onClick={(event) => {props.clearLineup(event)}}>Clear Lineup</button>
   }
  
   let removeButton;
   if (boat.name !== '') {
-    removeButton = <button className="crButton" id={props.lineupIndex} onClick={(event) => {props.clearLineup(event); props.clearBoat(event); props.removeLineup(event)}}>Remove Lineup</button>
+    removeButton = <button className="removeButton" id={props.lineupIndex} onClick={(event) => {props.clearLineup(event); props.clearBoat(event); props.removeLineup(event)}}>Remove Lineup</button>
   }
 
   let boatHeader;
   if (boat.name !== '') {
-    boatHeader = <h3>{`Boat: ${boat.name} (${boat.abbrev})`}</h3>
+    boatHeader = <h3 className="boatHeader">{`Boat: ${boat.name} (${boat.abbrev})`}</h3>
   }
-  else boatHeader = <h3>Boat:</h3>
+  else boatHeader = <h3 className="boatHeader">Boat:</h3>
 
   return (
     <div className="lineupContainer">        

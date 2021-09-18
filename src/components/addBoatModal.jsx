@@ -41,7 +41,9 @@ class AddBoatModal extends Component {
                 <div className = "modalContent">
                   <div className = "modalBody">
                     <BoatForm boatList = {this.props.boatList} getBoats = {this.props.getBoats} closeModal = {this.showModal}/>
-                    <button onClick={this.showModal}>Exit</button>
+                    <div className="exitButton">
+                    <Button onClick={this.showModal} variant="outlined" color="primary">Exit</Button>
+                    </div>
                   </div>
                 </div>
               </div>

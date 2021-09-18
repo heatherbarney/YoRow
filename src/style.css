@@ -8,6 +8,11 @@ html {
   
   h3 {
     font-size: 1.6rem;
+    padding-bottom: 1rem;
+  }
+
+  .boatHeader {
+    padding-bottom: 0;
   }
   
   p {
@@ -70,14 +75,14 @@ html {
   
   .selectionContainer {
     display: grid;
-    grid-template-columns: 225px 1fr 3fr;
+    grid-template-columns: 235px 255px 3fr;
   }
 
   .selectorLabel {
     display: inline-block;
     width: 150px;
-    margin-top: 1em;
-    margin-bottom: 1em;
+    margin-top: .8em;
+    margin-bottom: .8em;
   }
   
   .Port {
@@ -115,7 +120,7 @@ html {
 
   .modalContent {
     background-color: white;
-    width: 500px;
+    width: 300px;
   }
 
   .modal {
@@ -133,6 +138,7 @@ html {
 
   .modalBody {
     padding: 10px;
+    margin: 20px;
   }
 
   .modalButton {
@@ -156,6 +162,7 @@ html {
     padding-top: 10px;
     padding-right: 10px;
     border-right: 1px solid lightgrey;
+    width: 277px;
   }
 
   .lineupHeader {
@@ -163,7 +170,7 @@ html {
     padding-top: 20px;
   }
 
-  .crButton {
+  .clearLineupButton {
     color: #dc004e;
     background-color: #fff;
     padding: .8rem 1.7rem;
@@ -178,6 +185,41 @@ html {
     margin: 0px
   }
 
-  .crButton:hover {
+  .clearLineupButton:hover {
     background-color: #fce4ec;
+  }
+
+  .removeButton {
+    color: #dc004e;
+    background-color: #fff;
+    padding: .8rem 1.7rem;
+    font-family: 'Roboto', sans-serif;
+    font-size: .85rem;
+    outline: 0;
+    border: 1px solid #dc004e;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-top: .8rem
+  }
+
+  .removeButton:hover {
+    background-color: #fce4ec;
+  }
+
+  .formLabel {
+    margin: 10px;
+  }
+
+  .formContainer {
+    margin: 20px;
+  }
+
+  .exitButton {
+    margin-top: 10px;
+  }
+
+  .seatContainer {
+    margin-top: 10px;
   }

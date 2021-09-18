@@ -46,7 +46,7 @@ class DateForm extends Component {
       })
         .then(resp => resp.json())
         .then((data) => {
-          console.log(data);
+          alert('Lineups saved!');
         })
         .catch(err => console.log('athleteForm fetch /api/roster: ERROR: ', err));
       }

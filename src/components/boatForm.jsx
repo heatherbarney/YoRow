@@ -1,4 +1,10 @@
 import React, { Component } from 'react';
+import { TextField, Select, FormControl, MenuItem, InputLabel } from '@mui/material';
+import { Typography } from '@material-ui/core';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Button from '@material-ui/core/Button';
 
 class BoatForm extends Component {
     
@@ -121,7 +127,8 @@ class BoatForm extends Component {
         })
       }
 
-      else if (name === 'side') {
+      else {
+        const id = name[0];
         this.setState(prevState => ({
           seats: prevState.seats.map(
             el => el.number == id ? { number: id, side: value }: el
@@ -182,48 +189,63 @@ class BoatForm extends Component {
         for (let i = 0; i < this.state.seats.length; i++) {
           seats.push(
             <div>
-            <label>
-              Seat Number: {i + 1}
-              <select name="side" id = {i + 1} value={this.state.seats[i].side} onChange={this.handleInputChange}>
-                <option value="Port">Port</option>
-                <option value="Starboard">Starboard</option>
-              </select>
-            </label>
+              <FormControl sx={{ m: 1, minWidth: 120 }}>
+                <InputLabel>Seat Number: {i + 1}</InputLabel>
+                <Select
+                  name={(i + 1) + "side"}
+                  value={this.state.seats[i].side}
+                  label="Boat Class"
+                  onChange={this.handleInputChange}
+                  label={'Seat Number ' + i + 1}
+                >
+                  <MenuItem value="Port">Port</MenuItem>
+                  <MenuItem value="Starboard">Starboard</MenuItem>
+                </Select>
+              </FormControl>
             <br/>
             </div>
           )};
       }
       
       return (
-        <form onSubmit={(event) => {this.handleSubmit(event); this.props.closeModal(event);}}>
-          <label className='formLabel'>
-            Boat Name:
-            <input
-              name="boatName"
-              type="text"
-              value={this.state.boatName}
-              onChange={this.handleInputChange} />
-          </label>
+        <div>
+          <Typography variant="h3">Add Boat</Typography>
+          <form onSubmit={(event) => {this.handleSubmit(event); this.props.closeModal(event);}}>
+          <TextField
+            id="outlined-name"
+            name="boatName"
+            label="Boat Name"
+            value={this.state.BoatName}
+            onChange={this.handleInputChange}
+          />  
+          <FormControl>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              name="abbrev"
+              value={this.state.abbrev}
+              label="Boat Class"
+              onChange={this.handleInputChange}
+            >
+              <MenuItem value="1x">1x</MenuItem>
+              <MenuItem value="2x">2x</MenuItem>
+              <MenuItem value="2-">2-</MenuItem>
+              <MenuItem value="2+">2+</MenuItem>
+              <MenuItem value="4x">4x</MenuItem>
+              <MenuItem value="4x+">4x+</MenuItem>
+              <MenuItem value="4-">4-</MenuItem>
+              <MenuItem value="4+">4+</MenuItem>
+              <MenuItem value="8+">8+</MenuItem>
+              <MenuItem value="8x+">8x+</MenuItem>
+            </Select>
+          </FormControl>
           <br/>
-          <label>
-            Boat Class:
-            <select name="abbrev" value={this.state.abbrev} onChange={this.handleInputChange}>
-              <option value="1x">1x</option>
-              <option value="2x">2x</option>
-              <option value="2-">2-</option>
-              <option value="2+">2+</option>
-              <option value="4x">4x</option>
-              <option value="4x+">4x+</option>
-              <option value="4-">4-</option>
-              <option value="4+">4+</option>
-              <option value="8+">8+</option>
-              <option value="8x+">8x+</option>
-            </select>
-          </label>
-          <br/>
+          <div className="seatContainer">
           {seats}
-          <input type="submit" value="Submit" />
+          </div>
+          <Button variant="contained" color="primary" type="submit">Submit</Button>
         </form>
+        </div>
       );
     }
   }

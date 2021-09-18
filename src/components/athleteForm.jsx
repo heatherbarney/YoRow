@@ -1,4 +1,10 @@
 import React, { Component } from 'react';
+import { TextField } from '@mui/material';
+import { Typography } from '@material-ui/core';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Button from '@material-ui/core/Button';
 
 class AthleteForm extends Component {
     
@@ -72,54 +78,46 @@ class AthleteForm extends Component {
 
     render() {
       return (
+        <div>
+        <Typography variant="h3">Add Athlete</Typography>
         <form onSubmit={(event) => {this.handleSubmit(event); this.props.closeModal(event);}}>
-          <label className='formLabel'>
-            Athlete Name:
-            <input
+            <TextField
+              id="outlined-name"
               name="athleteName"
-              type="text"
-              value={this.state.athleteName}
-              onChange={this.handleInputChange} />
-          </label>
+              label="Athlete Name"
+              value={this.state.Athletename}
+              onChange={this.handleInputChange}
+            />
           <br/>
-          <label className='formLabel'>
-            Port:
-            <input
+          <FormGroup>
+            <FormControlLabel control={<Checkbox
+              size="large"
               name="port"
-              type="checkbox"
               checked={this.state.port}
-              onChange={this.handleInputChange} />
-          </label>
-          <br/>
-          <label className='formLabel'>
-            Starboard:
-            <input
+              onChange={this.handleInputChange}
+              inputProps={{ 'aria-label': 'controlled' }}/>} label="Port" />
+            <FormControlLabel control={<Checkbox
+              size="large"
               name="starboard"
-              type="checkbox"
               checked={this.state.starboard}
-              onChange={this.handleInputChange} />
-          </label>
-          <br/>
-          <label className='formLabel'>
-            Sculler:
-            <input
+              onChange={this.handleInputChange}
+              inputProps={{ 'aria-label': 'controlled' }}/>} label="Starboard" />
+            <FormControlLabel control={<Checkbox
+              size="large"
               name="sculler"
-              type="checkbox"
               checked={this.state.sculler}
-              onChange={this.handleInputChange} />
-          </label>
-          <br/>
-          <label className='formLabel'>
-            Coxswain:
-            <input
+              onChange={this.handleInputChange}
+              inputProps={{ 'aria-label': 'controlled' }}/>} label="Sculler" />
+            <FormControlLabel control={<Checkbox
+              size="large"
               name="coxswain"
-              type="checkbox"
               checked={this.state.coxswain}
-              onChange={this.handleInputChange} />
-          </label>
-          <br/>
-          <input type="submit" value="Submit" />
+              onChange={this.handleInputChange}
+              inputProps={{ 'aria-label': 'controlled' }}/>} label="Coxswain" />
+          </FormGroup>
+          <Button variant="contained" color="primary" type="submit">Submit</Button>
         </form>
+        </div>
       );
     }
   }
