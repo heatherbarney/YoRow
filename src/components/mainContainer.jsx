@@ -12,6 +12,7 @@ class MainContainer extends Component {
       lineupList: [],
       activeBoatList: [],
       boatList: [],
+      date: ''
     }
 
     this.assignAthlete = this.assignAthlete.bind(this);
@@ -136,7 +137,7 @@ class MainContainer extends Component {
       .then(json => { 
         const boats = json.boats.slice();
         const lineups = json.lineups.slice(); 
-        this.setState({activeBoatList: boats, lineupList: lineups});
+        this.setState({activeBoatList: boats, lineupList: lineups, date: json.date});
       })
   }
 
@@ -299,6 +300,7 @@ class MainContainer extends Component {
             lineupList={this.state.lineupList} 
             roster={this.state.roster} 
             activeBoatList={this.state.activeBoatList}
+            date={this.state.date}
             chooseBoat={this.chooseBoat} 
             clearLineup={this.clearLineup}
             assignAthlete={this.assignAthlete}

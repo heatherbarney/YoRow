@@ -41,6 +41,14 @@ class LineupContainer extends Component {
       let modal;
       if (lineupList[0] && activeBoatList[0].name !== '') modal = <SaveLineupModal activeBoatList={this.props.activeBoatList} lineupList={this.props.lineupList}/>
 
+      let dateDisplay;
+      if (this.props.date) {
+        const dateString = Date.parse(this.props.date);
+        const dateObj = new Date(dateString);
+        console.log(dateObj);
+        dateDisplay = <h3>{dateObj.toDateString()}</h3>
+      }
+
     return(
         <div>
         <div className="lineupHeader">
@@ -48,6 +56,7 @@ class LineupContainer extends Component {
             <Button variant="contained" color="primary" onClick = {(e) => {this.props.addLineup(); this.props.addActiveBoat()}}>Add Lineup</Button>
             <RetrieveLineupModal retrieveLineups={this.props.retrieveLineups}/>
             {modal}
+            {dateDisplay}
         </div>
         <div className="lineupsContainer">
             {lineups}
