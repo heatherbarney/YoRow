@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button, Typography } from '@material-ui/core';
 
 class DateForm extends Component {
     
@@ -54,18 +55,19 @@ class DateForm extends Component {
 
     render() {
       return (
-        <form onSubmit={(event) => {this.handleSubmit(event); this.props.closeModal(event);}}>
-          <label className='formLabel'>
-            Practice Date:
+        <div>
+        <Typography variant="h4">Select Date</Typography>
+        <form onSubmit={(event) => {this.handleSubmit(event); this.props.closeModal(event);}}>  
             <input
+              className="datePicker" 
               name="date"
               type="date"
               value={this.state.date}
               onChange={this.handleInputChange} />
-          </label>
           <br/>
-          <input type="submit" value="Submit" />
+          <Button variant="contained" color="primary" type="submit">Save Lineups</Button>
         </form>
+        </div>
       );
     }
   }

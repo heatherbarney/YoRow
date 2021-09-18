@@ -41,7 +41,9 @@ class SaveLineupModal extends Component {
                 <div className = "modalContent">
                   <div className = "modalBody">
                     <DateForm activeBoatList={this.props.activeBoatList} lineupList={this.props.lineupList} closeModal = {this.showModal}/>
-                    <button onClick={this.showModal}>Exit</button>
+                    <div className="exitButton">
+                    <Button onClick={this.showModal} variant="outlined" color="primary">Exit</Button>
+                    </div>
                   </div>
                 </div>
               </div>
