@@ -39,7 +39,7 @@ class LineupContainer extends Component {
     })
 
       let modal;
-      if (lineupList[0]) modal = <SaveLineupModal activeBoatList={this.props.activeBoatList} lineupList={this.props.lineupList}/>
+      if (lineupList[0] && activeBoatList[0].name !== '') modal = <SaveLineupModal activeBoatList={this.props.activeBoatList} lineupList={this.props.lineupList}/>
 
     return(
         <div>

@@ -41,7 +41,9 @@ class RetrieveLineupModal extends Component {
                 <div className = "modalContent">
                   <div className = "modalBody">
                     <RetrieveDateForm retrieveLineups={this.props.retrieveLineups} closeModal = {this.showModal}/>
-                    <button onClick={this.showModal}>Exit</button>
+                    <div className="exitButton">
+                    <Button onClick={this.showModal} variant="outlined" color="primary">Exit</Button>
+                    </div>
                   </div>
                 </div>
               </div>
